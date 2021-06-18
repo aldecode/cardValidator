@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link crossorigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+          rel="stylesheet">
+    <title>CardAnalyzer</title>
+</head>
+<body style="background-color: #272c30">
+<h1 class="text-center text-light mt-2">Credit card analyzer</h1>
+
+    <div class="m-3">
+        <form name="form">
+            <label class="form-label text-light" for="cardNumberInput">Card number</label>
+            <input class="form-control text-light bg-dark btn-outline-danger" id="cardNumberInput" name="cardcode" placeholder="XXXX XXXX XXXX XXXX"
+                   type="text">
+            <button class="btn btn-danger mt-2 w-100 fs-4 " disabled id="answerButton">Your card here</button>
+        </form>
+    </div>
+<script src="cardValidator.js"></script>
+<script>
+    let cc = form.cardcode;
+    for (let i in ['input', 'change', 'blur', 'keyup']) {
+        cc.addEventListener('input', formatCardCode, false);
+    }
+    function formatCardCode() {
+        let cardCode = this.value.replace(/[^\d]/g, '').substring(0, 16);
+        cardCode = cardCode !== '' ? cardCode.match(/.{1,4}/g).join(' ') : '';
+        this.value = cardCode;
+    }
+</script>
+</body>
+</html>
+
+
